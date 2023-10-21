@@ -1,5 +1,7 @@
 package org.example.modelos;
 
+import org.example.validaciones.ValidacionSeguro;
+
 import java.time.LocalDate;
 
 public class Seguro {
@@ -18,6 +20,7 @@ public class Seguro {
     private LocalDate fechaInicioCobertura;
     private String numeroPoliza;
 
+    private ValidacionSeguro validacionSeguro = new ValidacionSeguro();
     public Seguro() {
     }
 
@@ -42,31 +45,57 @@ public class Seguro {
 
     public void setNombreAsegurado(String nombreAsegurado)
     {
-
+        try {
+            this.validacionSeguro.validarNombreAsegurado(nombreAsegurado);
+            this.nombreAsegurado = nombreAsegurado;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 
     public int getEdadAsegurado() {
         return edadAsegurado;
     }
 
-    public void setEdadAsegurado(int edadAsegurado) {
-        this.edadAsegurado = edadAsegurado;
+    public void setEdadAsegurado(int edadAsegurado)
+    {
+        try {
+            this.validacionSeguro.validarEdadAsegurado(edadAsegurado);
+            this.edadAsegurado = edadAsegurado;
+
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 
     public String getBeneficiario() {
         return beneficiario;
     }
 
-    public void setBeneficiario(String beneficiario) {
-        this.beneficiario = beneficiario;
+    public void setBeneficiario(String beneficiario)
+    {
+        try {
+            this.validacionSeguro.validarBeneficiario(beneficiario);
+            this.beneficiario = beneficiario;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 
     public double getMontoCobertura() {
         return montoCobertura;
     }
 
-    public void setMontoCobertura(double montoCobertura) {
-        this.montoCobertura = montoCobertura;
+    public void setMontoCobertura(double montoCobertura)
+    {
+        try
+        {
+            this.validacionSeguro.validarMontoCobertura(montoCobertura);
+            this.montoCobertura = montoCobertura;
+        }catch (Exception error)
+        {
+            System.out.println(error.getMessage());
+        }
     }
 
     public String getTipoPoliza() {
@@ -113,8 +142,14 @@ public class Seguro {
         return fechaInicioCobertura;
     }
 
-    public void setFechaInicioCobertura(LocalDate fechaInicioCobertura) {
-        this.fechaInicioCobertura = fechaInicioCobertura;
+    public void setFechaInicioCobertura(LocalDate fechaInicioCobertura)
+    {
+        try {
+            this.validacionSeguro.validarFechaInicioCobertura(fechaInicioCobertura.toString());
+            this.fechaInicioCobertura = fechaInicioCobertura;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 
     public String getNumeroPoliza() {
@@ -144,3 +179,4 @@ public class Seguro {
         System.out.println("La prima del seguro de vida es: $" + primaFinal);
     }
 }
+

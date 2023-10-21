@@ -1,4 +1,4 @@
-package org.example.utilidad;
+package org.example.utilidades;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,5 +14,4 @@ public class Utilidades
             return false;
         }
     }
-
 }
